@@ -23,7 +23,7 @@ spec:
         app.kubernetes.io/instance: test-component-oovn
     spec:
       containers:
-      - image: quay.io/psturc/test-images:1b3a8acb9514499698a3df9f6d7b9b8d
+      - image: quay.io/psturc/test-images@sha256:1178a8e495b32fbbd2efd167c9134588303dbbe5d0de788f44a287a0432bb363
         imagePullPolicy: Always
         livenessProbe:
           httpGet:
