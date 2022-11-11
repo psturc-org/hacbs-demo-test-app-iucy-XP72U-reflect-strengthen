@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app.kubernetes.io/created-by: application-service
+    app.kubernetes.io/instance: test-component-oovn
+    app.kubernetes.io/managed-by: kustomize
+    app.kubernetes.io/name: test-component-oovn
+    app.kubernetes.io/part-of: hacbs-demo-test-app-iucy
+  name: test-component-oovn
+  namespace: hacbs-e2e-xwjk
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: test-component-oovn
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app.kubernetes.io/instance: test-component-oovn
+    spec:
+      containers:
+      - image: quay.io/psturc/test-images:1b3a8acb9514499698a3df9f6d7b9b8d
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        name: container-image
+        ports:
+        - containerPort: 8081
+        readinessProbe:
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          tcpSocket:
+            port: 8081
+        resources: {}
+status: {}
